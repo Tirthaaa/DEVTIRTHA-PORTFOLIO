@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIRTHA'S PORTFOLIO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sutirtha's portfolio showcasing front-end development and yoga instruction services.">
+    <meta name="keywords" content="Sutirtha, front-end developer, yoga instructor, web development, portfolio">
+    <meta name="author" content="Sutirtha">
+    <link rel="icon" href="path/to/favicon.ico">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: rgb(0, 0, 5);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #111;
+        }
+
+        body.light-mode nav {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light-mode footer {
+            background-color: #f5f5f5;
+        }
+
+        /* Abstract Background */
+        .abstract-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, rgba(24, 252, 4, 0.2) 5%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(24, 252, 4, 0.15) 8%, transparent 35%),
+                        radial-gradient(circle at 50% 50%, rgba(24, 252, 4, 0.1) 10%, transparent 40%),
+                        linear-gradient(45deg, rgb(0, 0, 5) 0%, rgb(10, 10, 20) 100%);
+            animation: pulse 15s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        body.light-mode .abstract-bg {
+            background: radial-gradient(circle at 20% 30%, rgba(24, 252, 4, 0.3) 5%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(24, 252, 4, 0.25) 8%, transparent 35%),
+                        radial-gradient(circle at 50% 50%, rgba(24, 252, 4, 0.2) 10%, transparent 40%),
+                        linear-gradient(45deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 5%;
+        }
+
+        .left {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            color: rgb(17, 231, 10);
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 40px 5%;
+        }
+
+        .firstSection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .leftSection {
+            font-size: 1.8rem;
+            max-width: 100%;
+        }
+
+        .leftSection span {
+            color: rgb(24, 252, 4);
+        }
+
+        .rightSection img {
+            width: 250px;
+            height: 250px;
+            max-width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(24, 252, 4, 0.5);
+        }
+
+        h1.section-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .about-divider {
+            width: 60px;
+            height: 3px;
+            background-color: rgb(24, 252, 4);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        body.light-mode .about-divider {
+            background-color: rgb(17, 231, 10);
+        }
+
+        .about-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .about-skills span {
+            background-color: #111;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        body.light-mode .about-skills span {
+            background-color: #ddd;
+            color: #111;
+        }
+
+        .services-list, .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background-color: #111;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        body.light-mode .card {
+            background-color: #fff;
+            color: #111;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(24, 252, 4, 0.5);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background-color: rgb(24, 252, 4);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+        }
+
+        .card a:hover, .card a:focus {
+            background-color: rgb(17, 231, 10);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            background-color: #111;
+            color: white;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+
+        body.light-mode .social-icons a {
+            background-color: #ddd;
+            color: #111;
+        }
+
+        .social-icons a:hover, .social-icons a:focus {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(24, 252, 4, 0.7);
+            background-color: rgb(24, 252, 4);
+            color: black;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: rgb(24, 252, 4);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .resume-btn:hover, .resume-btn:focus {
+            background-color: rgb(17, 231, 10);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .contact-form label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #111;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        body.light-mode .contact-form input, body.light-mode .contact-form textarea {
+            background-color: #fff;
+            color: #111;
+            border-color: #333;
+        }
+
+        .contact-form button {
+            padding: 8px;
+            background-color: rgb(24, 252, 4);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .contact-form button:hover, .contact-form button:focus {
+            background-color: rgb(17, 231, 10);
+        }
+
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 15px 5%;
+            margin-top: 30px;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        /* Mobile Menu */
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+        }
+
+        body.light-mode .nav-menu.active {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .leftSection {
+                font-size: 1.5rem;
+            }
+            .rightSection img {
+                width: 180px;
+                height: 180px;
+            }
+            h1.section-title {
+                font-size: 1.2rem;
+            }
+            .section {
+                padding: 30px 5%;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul li a {
+                font-size: 1rem;
+            }
+            .about-skills span {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .leftSection {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+            .firstSection {
+                flex-direction: column;
+                align-items: center;
+            }
+            .rightSection img {
+                width: 120px;
+                height: 120px;
+            }
+            .services-list, .projects-list {
+                grid-template-columns: 1fr;
+            }
+            .social-icons a {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            .resume-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            .contact-form input, .contact-form textarea, .contact-form button {
+                font-size: 0.8rem;
+            }
+            .about-skills span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="abstract-bg"></div>
+
+    <header>
+        <nav>
+            <div class="left">DEVTIRTHA</div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="toggle-btn" id="modeToggle" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section firstSection" id="home" data-aos="fade-up">
+            <div class="leftSection">
+                Hi, My name is <span>Sutirtha</span>
+                <div>and I'm a</div>
+                <span id="element"></span>
+
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/Tirtha.taehyung?mibextid=2e7NQZZ42y80dCLz" target="_blank" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/9832456318" target="_blank" aria-label="WhatsApp Contact"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/tirthatatabyebye/profilecard/?igsh=bHE1bGNmMmliNG||" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/sutirtha-naskar-98ba49357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Tirthaaa" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                </div>
+                <a class="resume-btn" href="my portfolio.pdf" download>Download Resume</a>
+            </div>
+            <div class="rightSection">
+                <img src="tirtha.jfif.jpeg" alt="Sutirtha Profile Picture" loading="lazy">
+            </div>
+        </section>
+
+        <section class="section" id="about" data-aos="fade-right">
+            <h1 class="section-title">About Me</h1>
+            <p>
+                Hi I'm <strong>Sutirtha</strong> a  <strong>frontend web developer</strong>, I craft visually stunning and user-friendly web applications using <strong>HTML, CSS, and JavaScript </strong>.</p>
+            <div class="about-divider"></div>
+            <p>
+                With a strong foundation in <strong>Java and Python</strong>, I bring a unique blend of frontend and backend expertise to my projects. </p>
+            <div class="about-divider"></div>
+            <p>
+                Additionally, I have experience in <strong>App development</strong>, allowing me to create seamless and engaging mobile experiences. Let's build something amazing together!"</p>
+            <div class="about-skills">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>React</span>
+                <span>Java</span>
+                <span>Python</span>
+                <span>Git</span>
+                <span>Flutter</span>
+            </div>
+        </section>
+
+        <section class="section" id="services" data-aos="fade-left">
+            <h1 class="section-title">Services</h1>
+            <div class="services-list">
+                <div class="card">
+                    <h3>Web Developer</h3>
+                    <p>Responsive, modern websites tailored to your needs.</p>
+                </div>
+                <div class="card">
+                    <h3>UI/UX Design</h3>
+                    <p>Designing intuitive interfaces for the best user experience.</p>
+                </div>
+                <div class="card">
+                    <h3>App Developer</h3>
+                    <p>Creating Mobile apps as per sociteys needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects" data-aos="fade-up">
+            <h1 class="section-title">Projects</h1>
+            <div class="projects-list">
+                <div class="card">
+                    <img src="chatbot.png" alt="Voice Assistant" loading="lazy">
+                    <h3>Voice Assistant</h3>
+                    <p>No need to type ! Just ask Tirtha your ultimate Voice Assistant.</p>
+                    
+                  <a href="https://github.com/your-username/project1" target="_blank">GitHub</a>
+                </div>
+                <div class="card">
+                    <img src="myportfolio.png" alt="My Own Portfolio" loading="lazy">
+                    <h3>My Portfolio</h3>
+                    <p>Modern portfolio website built with HTML, CSS, JS.</p>
+                    
+                    <a href="https://github.com/Tirthaaa/Portfolio.git" target="_blank">GitHub</a>
+                </div>
+                <div class="card">
+                    <img src="piano.png" alt="Project Three" loading="lazy">
+                    <h3>Piano</h3>
+                    <p>Play some piano to keep your mood happy!</p>
+                
+                    <a href="https://github.com/your-username/project3" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact" data-aos="fade-up">
+            <h1 class="section-title">Contact Me</h1>
+            <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <label for="message">Your Message</label>
+                <textarea rows="4" id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/Tirtha.taehyung?mibextid=2e7NQZZ42y80dCLz" target="_blank" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/9832456318" target="_blank" aria-label="WhatsApp Contact"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/tirthatatabyebye/profilecard/?igsh=bHE1bGNmMmliNG||" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/sutirtha-naskar-98ba49357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Tirthaaa" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+        <p>© 2025 Sutirtha | All rights reserved.</p>
+    </footer>
+
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Front-end Developer.', 'UI/UX Designer.', 'Creative Coder.',],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        document.getElementById('modeToggle').addEventListener('click', function () {
+            document.body.classList.toggle('light-mode');
+            this.querySelector('i').classList.toggle('fa-sun');
+            this.querySelector('i').classList.toggle('fa-moon');
+        });
+
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('navMenu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+
+</html>
